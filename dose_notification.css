@@ -1,0 +1,93 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: rgb(32, 312, 152);
+  padding: 20px;
+  color:#3c9952;
+  text-align: center;
+}
+
+.container {
+  padding-left: 100px; /* Add padding-left to create the gap */
+  padding-top: 20px;
+  padding-right: 20px; /* Optional: add right padding for symmetry */
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.doses {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dose {
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 1px;
+  margin-right: 1px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 1px;
+  padding-right: 1px;
+  flex: 1 1 200px;
+  text-align: center;
+}
+
+/* Different background colors for different sections */
+
+.received .dose {
+  background-color: #b7dec0;
+  border-left: 5px solid #4caf50;
+}
+
+.yet-to-receive .dose {
+  background-color: #f3e870;
+  border-left: 5px solid #ffe018;
+}
+
+.missed .dose {
+  background-color: #df8f84;
+  border-left: 5px solid #f1574c;
+}
+
+.vaccine-name {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* Style for the date */
+.date {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline ;
+}
+
+.received .dose:hover {
+  background-color: #4caf50;
+  transition-duration: 0.5s;
+}
+
+.yet-to-receive .dose:hover {
+  background-color: #ffe018;
+  transition-duration: 0.5s;
+}
+
+.missed .dose:hover {
+  background-color: #f1574c;
+  transition-duration: 0.5s;
+}
