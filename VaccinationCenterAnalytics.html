@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccine Center Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .chart-container {
+            width: 45%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #00CFB4;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Vaccine Center Information</h1>
+    <div class="container">
+        <div class="chart-container">
+            <canvas id="vaccineCenterChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="centerAreaChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for the charts
+        const vaccineCenterData = {
+            labels: ['Vaccine A', 'Vaccine B', 'Vaccine C'],
+            datasets: [
+                {
+                    label: 'Center 1',
+                    data: [10, 5, 15],
+                    backgroundColor: '#4bc0c0'
+                },
+                {
+                    label: 'Center 2',
+                    data: [8, 12, 5],
+                    backgroundColor: '#36a2eb'
+                },
+                {
+                    label: 'Center 3',
+                    data: [5, 10, 20],
+                    backgroundColor: '#ffcd56'
+                }
+            ]
+        };
+
+        const centerAreaData = {
+            labels: ['Area 1', 'Area 2', 'Area 3'],
+            datasets: [{
+                label: 'Number of Centers',
+                data: [5, 3, 7],
+                backgroundColor: '#9966ff'
+            }]
+        };
+
+        // Vaccine Name and Center Name Chart
+        new Chart(document.getElementById('vaccineCenterChart'), {
+            type: 'bar',
+            data: vaccineCenterData,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Vaccine Name'
+                        }
+                    },
+                    y: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Units of Vaccines'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+
+        // Number of Centers and Area Chart
+        new Chart(document.getElementById('centerAreaChart'), {
+            type: 'bar',
+            data: centerAreaData,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Area Name'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Number of Centers'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

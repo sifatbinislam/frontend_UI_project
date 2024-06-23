@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccine Information Analytics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:white;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .chart-container {
+            width: 45%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+           color: #00CFB4;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Vaccine Information Analytics</h1>
+    <div class="container">
+        <div class="chart-container">
+            <canvas id="epiNonEpiChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="vaccineDetailsChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for the charts
+        const epiNonEpiData = [70, 30]; // Example data for EPI and NON-EPI vaccines
+        const vaccineNames = ['Vaccine A', 'Vaccine B', 'Vaccine C'];
+        const numberOfDoses = [2, 3, 1];
+        const appropriateAge = ['0-5 years', '6-15 years', '16+ years'];
+
+        // EPI vs NON-EPI Vaccine Chart
+        new Chart(document.getElementById('epiNonEpiChart'), {
+            type: 'pie',
+            data: {
+                labels: ['EPI Vaccine', 'NON-EPI Vaccine'],
+                datasets: [{
+                    data: epiNonEpiData,
+                    backgroundColor: ['#36a2eb', '#ff6384']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+
+        // Vaccine Details Chart
+        new Chart(document.getElementById('vaccineDetailsChart'), {
+            type: 'bar',
+            data: {
+                labels: vaccineNames,
+                datasets: [
+                    {
+                        label: 'Number of Doses',
+                        data: numberOfDoses,
+                        backgroundColor: '#4bc0c0',
+                        yAxisID: 'dosesAxis',
+                    },
+                    {
+                        label: 'Appropriate Age',
+                        data: numberOfDoses, // Use same data, change later
+                        type: 'line',
+                        backgroundColor: '#ffcd56',
+                        borderColor: '#ffcd56',
+                        fill: false,
+                        yAxisID: 'ageAxis',
+                        datalabels: {
+                            labels: {
+                                name: {
+                                    formatter: function(value, context) {
+                                        return appropriateAge[context.dataIndex];
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Vaccine Name'
+                        }
+                    },
+                    dosesAxis: {
+                        type: 'linear',
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Number of Doses'
+                        }
+                    },
+                    ageAxis: {
+                        type: 'category',
+                        position: 'right',
+                        labels: appropriateAge,
+                        title: {
+                            display: true,
+                            text: 'Appropriate Age'
+                        },
+                        ticks: {
+                            callback: function(value, index) {
+                                return appropriateAge[index];
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
