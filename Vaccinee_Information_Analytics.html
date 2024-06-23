@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccinee Information Analytics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #00CFB4;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .chart-container {
+            width: 45%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: white;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Vaccinee Information Analytics</h1>
+    <div class="container">
+        <div class="chart-container">
+            <canvas id="ageDistributionChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="genderDistributionChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="vaccinationStatusChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="locationDistributionChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for the charts
+        const ageData = [5, 10, 15, 20, 25, 30, 35, 40];
+        const genderData = [55, 45];
+        const vaccinationStatusData = [80, 20];
+        const locationData = [30, 20, 25, 25];
+
+        // Age Distribution Chart
+        new Chart(document.getElementById('ageDistributionChart'), {
+            type: 'bar',
+            data: {
+                labels: ['0-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71+'],
+                datasets: [{
+                    label: 'Number of Vaccinees',
+                    data: ageData,
+                    backgroundColor: '#36a2eb'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Age Group'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Number of Vaccinees'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Gender Distribution Chart
+        new Chart(document.getElementById('genderDistributionChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Male', 'Female'],
+                datasets: [{
+                    data: genderData,
+                    backgroundColor: ['#ff6384', '#36a2eb']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+
+        // Vaccination Status Chart
+        new Chart(document.getElementById('vaccinationStatusChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Vaccinated', 'Not Vaccinated'],
+                datasets: [{
+                    data: vaccinationStatusData,
+                    backgroundColor: ['#4bc0c0', '#ffcd56']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+
+        // Location Distribution Chart
+        new Chart(document.getElementById('locationDistributionChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Location A', 'Location B', 'Location C', 'Location D'],
+                datasets: [{
+                    label: 'Number of Vaccinees',
+                    data: locationData,
+                    backgroundColor: '#9966ff'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Location'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Number of Vaccinees'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
